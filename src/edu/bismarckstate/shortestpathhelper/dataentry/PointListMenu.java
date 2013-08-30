@@ -11,23 +11,20 @@ public class PointListMenu extends Menu {
 	private TextMenu textMenu;
 	
 	/**
-	 * The Menu's Title
+	 * default constructor
 	 */
-	private final String MENU_TITLE = "Data Points List";
-	
-	/**
-	 * The list of data points for the system to push through
-	 */
-	private String [] datapoints;
+	public PointListMenu(){
+		super("Data Points List", null);
+	}
 	
 	@Override
-	Menu Run() {
+	public Menu Run() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	void ButtonEvent(Button b) {
+	public void ButtonEvent(Button b) {
 		// TODO Auto-generated method stub
 
 	}

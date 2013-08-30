@@ -19,11 +19,6 @@ public class MainMenu extends Menu {
 	private TextMenu textMenu;
 	
 	/**
-	 * Title of the menu.  Will display above the list of options
-	 */
-	private final String MENU_TITLE = "Main Menu";
-	
-	/**
 	 * Options that will show up in the menu.
 	 */
 	private String[] menuOptions = {
@@ -33,6 +28,7 @@ public class MainMenu extends Menu {
 	};
 	
 	public MainMenu() {
+		super("Main Menu", null);
 		textMenu = new TextMenu(menuOptions, 5, MENU_TITLE);
 	}
 
