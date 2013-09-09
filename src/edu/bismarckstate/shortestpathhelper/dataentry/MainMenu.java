@@ -3,6 +3,7 @@
  */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
+import edu.bismarckstate.shortestpathhelper.util.MovementInstructions;
 import lejos.nxt.Button;
 import lejos.util.TextMenu;
 
@@ -30,23 +31,23 @@ public class MainMenu extends Menu {
 	/**
 	 * Default constructor sets the menu title to Main Menu
 	 */
-	public MainMenu() {
-		super("Main Menu", null);
-		textMenu = new TextMenu(menuOptions, 5, MENU_TITLE);
+	public MainMenu(MovementInstructions instructions) {
+		super("Main Menu", instructions);
+		textMenu = new TextMenu(menuOptions, 1, MENU_TITLE);
 	}
 
 	/**
 	 * Starts the menu and returns the next menu object that will need to be run.
 	 */
 	@Override
-	public Menu Run() {
+	public Menu run() {
 		int selectedItem = textMenu.select();
 		switch(selectedItem){
 			case 0: //Enter New Data Points
 				//TODO add menu item for selecting the type of input method
 				return null;
 			case 1: //Current Data Points
-				return new PointListMenu();
+				return new PointListMenu(super.instructions);
 			case 2: //Finish
 		    default:
 				//return null to exit the menu system and return the data structure to the main program
@@ -56,7 +57,7 @@ public class MainMenu extends Menu {
 	}
 	
 	@Override
-	void ButtonEvent(Button b) {
+	void buttonEvent(Button b) {
 		// TODO Auto-generated method stub
 		
 	}

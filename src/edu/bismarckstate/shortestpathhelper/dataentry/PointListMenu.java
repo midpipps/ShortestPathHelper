@@ -1,5 +1,6 @@
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
+import edu.bismarckstate.shortestpathhelper.util.MovementInstructions;
 import lejos.nxt.Button;
 import lejos.util.TextMenu;
 
@@ -13,19 +14,20 @@ public class PointListMenu extends Menu {
 	/**
 	 * default constructor sets the menu title to Data Points List
 	 */
-	public PointListMenu(){
-		super("Data Points List", null);
-		textMenu = new TextMenu(null, 5, super.MENU_TITLE);
+	public PointListMenu(MovementInstructions instructions){
+		super("Data Points List", instructions);
+		textMenu = new TextMenu(super.instructions.getToStringArray(), 1, super.MENU_TITLE);
 	}
 	
 	@Override
-	public Menu Run() {
+	public Menu run() {
 		// TODO Auto-generated method stub
-		return null;
+		textMenu.select();
+		return new MainMenu(super.instructions);
 	}
 
 	@Override
-	public void ButtonEvent(Button b) {
+	public void buttonEvent(Button b) {
 		// TODO Auto-generated method stub
 
 	}
