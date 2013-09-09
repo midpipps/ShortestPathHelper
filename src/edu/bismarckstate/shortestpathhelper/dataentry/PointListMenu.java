@@ -21,8 +21,12 @@ public class PointListMenu extends Menu {
 	
 	@Override
 	public Menu run() {
-		// TODO Auto-generated method stub
-		textMenu.select();
+		int selection = textMenu.select();
+		//if there was actually a selection made then we need to go deeper by 1 menu
+		if (selection >= 0)
+		{
+			return new DeleteModifyMenu(super.instructions, selection);
+		}
 		return new MainMenu(super.instructions);
 	}
 

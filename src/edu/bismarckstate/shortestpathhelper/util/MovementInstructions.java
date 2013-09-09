@@ -32,6 +32,11 @@ public class MovementInstructions {
 		return instructions.toArray(new MovementInstruction[instructions.size()]);
 	}
 	
+	public void remove(int index)
+	{
+		instructions.remove(index);
+	}
+	
 	public boolean remove(MovementInstruction instruction)
 	{
 		return instructions.remove(instruction);

@@ -71,7 +71,7 @@ public class MovementInstruction {
 
 	@Override
 	public String toString() {
-		return "DataPoint <distance=" + distance + ", direction=" + direction
+		return "<" + distance + ", " + direction
 				+ ">";
 	}
 	

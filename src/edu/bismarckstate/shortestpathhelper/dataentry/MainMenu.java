@@ -33,7 +33,7 @@ public class MainMenu extends Menu {
 	 */
 	public MainMenu(MovementInstructions instructions) {
 		super("Main Menu", instructions);
-		textMenu = new TextMenu(menuOptions, 1, MENU_TITLE);
+		textMenu = new TextMenu(menuOptions, 1, super.MENU_TITLE);
 	}
 
 	/**
