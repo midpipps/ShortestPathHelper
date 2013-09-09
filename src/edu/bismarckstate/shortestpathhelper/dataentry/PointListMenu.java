@@ -11,10 +11,11 @@ public class PointListMenu extends Menu {
 	private TextMenu textMenu;
 	
 	/**
-	 * default constructor
+	 * default constructor sets the menu title to Data Points List
 	 */
 	public PointListMenu(){
 		super("Data Points List", null);
+		textMenu = new TextMenu(null, 5, super.MENU_TITLE);
 	}
 	
 	@Override

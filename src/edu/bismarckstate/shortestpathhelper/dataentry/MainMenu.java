@@ -27,11 +27,17 @@ public class MainMenu extends Menu {
 		"Finish"
 	};
 	
+	/**
+	 * Default constructor sets the menu title to Main Menu
+	 */
 	public MainMenu() {
 		super("Main Menu", null);
 		textMenu = new TextMenu(menuOptions, 5, MENU_TITLE);
 	}
 
+	/**
+	 * Starts the menu and returns the next menu object that will need to be run.
+	 */
 	@Override
 	public Menu Run() {
 		int selectedItem = textMenu.select();
@@ -40,8 +46,7 @@ public class MainMenu extends Menu {
 				//TODO add menu item for selecting the type of input method
 				return null;
 			case 1: //Current Data Points
-				//TODO add menu item for modifying the entered data
-				return null;
+				return new PointListMenu();
 			case 2: //Finish
 		    default:
 				//return null to exit the menu system and return the data structure to the main program
