@@ -1,7 +1,6 @@
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
 import edu.bismarckstate.shortestpathhelper.util.MovementInstructions;
-import lejos.nxt.Button;
 import lejos.util.TextMenu;
 
 public class PointListMenu extends Menu {
@@ -29,11 +28,4 @@ public class PointListMenu extends Menu {
 		}
 		return new MainMenu(super.instructions);
 	}
-
-	@Override
-	public void buttonEvent(Button b) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

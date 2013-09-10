@@ -4,7 +4,6 @@
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
 import edu.bismarckstate.shortestpathhelper.util.MovementInstructions;
-import lejos.nxt.Button;
 import lejos.util.TextMenu;
 
 
@@ -24,7 +23,7 @@ public class MainMenu extends Menu {
 	 */
 	private String[] menuOptions = {
 		"Enter New Points",
-		"Current Data Points",
+		"Current Points",
 		"Finish"
 	};
 	
@@ -41,11 +40,9 @@ public class MainMenu extends Menu {
 	 */
 	@Override
 	public Menu run() {
-		int selectedItem = textMenu.select();
-		switch(selectedItem){
+		switch(textMenu.select()){
 			case 0: //Enter New Data Points
-				//TODO add menu item for selecting the type of input method
-				return null;
+				return new AddTypeMenu(super.instructions);
 			case 1: //Current Data Points
 				return new PointListMenu(super.instructions);
 			case 2: //Finish
@@ -53,12 +50,6 @@ public class MainMenu extends Menu {
 				//return null to exit the menu system and return the data structure to the main program
 				return null;
 		}
-		
-	}
-	
-	@Override
-	void buttonEvent(Button b) {
-		// TODO Auto-generated method stub
 		
 	}
 }
