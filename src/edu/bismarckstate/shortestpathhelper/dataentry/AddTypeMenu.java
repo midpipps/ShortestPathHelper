@@ -34,9 +34,8 @@ public class AddTypeMenu extends Menu {
 			case 0:
 				//TODO add the On brick entry menu
 				return null;
-			case 1:
-				//TODO add the file entry
-				return null;
+			case 1://file add points
+				return new FileAddPointsMenu(instructions);
 			default:
 				return new MainMenu(super.instructions);
 		}
