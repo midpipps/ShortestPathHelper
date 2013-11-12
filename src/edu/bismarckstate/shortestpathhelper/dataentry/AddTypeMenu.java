@@ -14,7 +14,7 @@ public class AddTypeMenu extends Menu {
 
 	private TextMenu textMenu;
 	private String [] menuOptions = {
-			"On Brick",
+			//"On Brick",
 			"File Enter"
 	};
 	
@@ -31,10 +31,10 @@ public class AddTypeMenu extends Menu {
 	public Menu run() {
 		switch(textMenu.select())
 		{
-			case 0:
+			/*case 0:
 				//TODO add the On brick entry menu
-				return null;
-			case 1://file add points
+				return null;*/
+			case 0://file add points
 				return new FileAddPointsMenu(instructions);
 			default:
 				return new MainMenu(super.instructions);

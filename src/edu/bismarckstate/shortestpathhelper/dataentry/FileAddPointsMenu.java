@@ -3,9 +3,16 @@
  */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import edu.bismarckstate.shortestpathhelper.util.MovementInstruction;
 import edu.bismarckstate.shortestpathhelper.util.MovementInstructions;
 import lejos.nxt.Button;
 import lejos.util.TextMenu;
@@ -44,7 +51,38 @@ public class FileAddPointsMenu extends Menu {
 		int selection = textMenu.select();
 		if (selection >= 0)
 		{
-			//TODO load the data into the instruction set
+			
+			File data = new File(menuOptions.get(selection));
+			if (data.canRead())
+			{
+				try{
+					InputStream is = new FileInputStream(data);
+					DataInputStream din = new DataInputStream(is);
+					BufferedReader br = new BufferedReader(new InputStreamReader(din));
+					String strLineDirection;
+					while((strLineDirection = br.readLine()) != null) {
+						String strLineDistance = br.readLine();
+						if (strLineDistance != null)
+						{
+							MovementInstruction mi = new MovementInstruction();
+							mi.setDirection(Double.parseDouble(strLineDirection.trim()));
+							mi.setDistance(Double.parseDouble(strLineDistance.trim()));
+							super.instructions.add(mi);
+						}
+						if (!br.ready()){
+							//no idea why this works but it does so meh;
+							break;
+						}						
+					}
+					din.close();
+				}catch(IOException ioe){
+					System.out.println("error:" + ioe.getMessage());
+					Button.ENTER.waitForPressAndRelease();
+				}catch(Exception ex){
+					System.out.println("error:" + ex.getMessage());
+					Button.ENTER.waitForPressAndRelease();
+				}
+			}
 		}	
 		return new AddTypeMenu(super.instructions);
 	}

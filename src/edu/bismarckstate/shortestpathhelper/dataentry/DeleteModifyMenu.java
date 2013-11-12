@@ -15,7 +15,7 @@ public class DeleteModifyMenu extends Menu {
 	private int selectedItem;
 	private TextMenu textMenu;
 	private String[] menuOptions = {
-			"Modify",
+			//"Modify",
 			"Delete"
 		};
 	
@@ -33,10 +33,10 @@ public class DeleteModifyMenu extends Menu {
 	public Menu run() {
 		switch(textMenu.select())
 		{
-			case 0://Modify
+			/*case 0://Modify
 				//TODO add MenuItem to Modify the item.
-				break;
-			case 1:
+				break;*/
+			case 0:
 				//Delete
 				super.instructions.remove(selectedItem);
 				break;
