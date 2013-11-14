@@ -15,7 +15,7 @@ import edu.bismarckstate.shortestpathhelper.util.MovementInstruction;
 
 public class RobotMovement {
 
-	private int facing;
+	private double facing;
 	private DifferentialPilot diffPilot;
 	private boolean diffPilotSetup = false;
 	
@@ -116,14 +116,17 @@ public class RobotMovement {
 		double rot = move.getNormalizedTurn(facing);
 		this.diffPilot.rotate(rot);
 		this.diffPilot.travel(dist);
-		
+		this.facing = (this.facing + rot) % 360;
+		if (this.facing < 0){
+			this.facing += 360;
+		}
 	}
 
 	/**
 	 * @return The direction (in degrees) the robot is facing. 0 = North, 90 = East, 180 = South, 270 = West
 	 * 		   When the robot is started the direction it's facing is considered north until reset.
 	 */
-	public int getFacing() {
+	public double getFacing() {
 		return facing;
 	}
 
@@ -132,14 +135,14 @@ public class RobotMovement {
 	 *                When the robot is started the direction it's facing is considered north until reset.
 	 *                DALE AND TUCKER WARN: It's best to probably not change it's facing to avoid confusion, but hey you're in charge.
 	 */
-	public void setFacing(int facing) {
+	public void setFacing(double facing) {
 		this.facing = facing;
 	}
 	
 	public String toString(){
 		String output = "Facing: ";
 		
-		switch(facing){
+		switch((int)facing){
 		case 0: output.concat("NORTH"); break;
 		case 180: output.concat("SOUTH"); break;
 		case 90: output.concat("EAST"); break;

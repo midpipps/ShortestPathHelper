@@ -129,11 +129,13 @@ public class MovementInstruction implements Instruction{
 
 	@Override
 	public double getNormalizedTurn(double currentAngle) {
-		double dir = this.direction;
-		double x = (dir + 360) - currentAngle;
-		double y = (currentAngle + 360) - dir;
-		
-		return ((x<y) ? x : -y);
+		double returnValue = this.direction - currentAngle;
+		if (returnValue > 180){
+			returnValue = this.direction - (currentAngle + 360);
+		} else if (returnValue < -180) {
+			returnValue = (this.direction + 360) - currentAngle;
+		}
+		return returnValue;
 	}
 
 	@Override
