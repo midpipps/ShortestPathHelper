@@ -1,16 +1,13 @@
 package edu.bismarckstate.shortestpathhelper.movement;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.Vector;
+
 import lejos.nxt.Button;
 import lejos.nxt.Motor;
 import lejos.nxt.NXTRegulatedMotor;
 import lejos.robotics.navigation.DifferentialPilot;
+import edu.bismarckstate.shortestpathhelper.util.FileParser;
 import edu.bismarckstate.shortestpathhelper.util.MovementInstruction;
 
 public class RobotMovement {
@@ -47,30 +44,26 @@ public class RobotMovement {
 		NXTRegulatedMotor motor2 = Motor.A;
 		boolean reversed = false;
 		boolean fileReadok = true;
-		File data = new File(fileName);
-		if (data.canRead())
+		try
 		{
-			try{
-				InputStream is = new FileInputStream(data);
-				DataInputStream din = new DataInputStream(is);
-				BufferedReader br = new BufferedReader(new InputStreamReader(din));
-				motor1 = getMotorFromString(br.readLine());
-				motor2 = getMotorFromString(br.readLine());
-				trackwidth = Double.parseDouble(br.readLine().trim());
-				wheelwidth = Double.parseDouble(br.readLine().trim());
-				reversed = getMotorReversed(br.readLine().trim());
-				din.close();
-			}catch(IOException ioe){
+			Vector<String> fileData = FileParser.ReadFile(fileName);
+			if (fileData != null && fileData.size() == 5){
+					motor1 = getMotorFromString(fileData.elementAt(0));
+					motor2 = getMotorFromString(fileData.elementAt(1));
+					trackwidth = Double.parseDouble(fileData.elementAt(2).trim());
+					wheelwidth = Double.parseDouble(fileData.elementAt(3).trim());
+					reversed = getMotorReversed(fileData.elementAt(4).trim());
+			}else{
 				fileReadok = false;
-				System.out.println("error:" + ioe.getMessage());
-				Button.ENTER.waitForPressAndRelease();
-			}catch(Exception ex){
-				fileReadok = false;
-				System.out.println("error:" + ex.getMessage());
-				Button.ENTER.waitForPressAndRelease();
 			}
-		}else{
+		}catch(IOException ioe){
 			fileReadok = false;
+			System.out.println("error:" + ioe.getMessage());
+			Button.ENTER.waitForPressAndRelease();
+		}catch(Exception ex){
+			fileReadok = false;
+			System.out.println("error:" + ex.getMessage());
+			Button.ENTER.waitForPressAndRelease();
 		}
 		
 		if (fileReadok){

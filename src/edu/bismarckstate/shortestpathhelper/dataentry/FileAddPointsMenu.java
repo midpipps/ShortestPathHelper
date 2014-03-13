@@ -19,7 +19,7 @@ import lejos.util.TextMenu;
 
 /**
  * @author midpipps
- *
+ * @version 1.0
  */
 public class FileAddPointsMenu extends Menu {
 

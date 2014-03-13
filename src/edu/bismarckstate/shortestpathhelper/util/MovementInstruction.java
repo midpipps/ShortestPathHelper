@@ -142,6 +142,24 @@ public class MovementInstruction implements Instruction{
 	public double getNormalizedDistance() {
 		return this.distance;
 	}
+
+	@Override
+	public void setParam1(double par1) {
+		this.distance = par1;
+		
+	}
+
+	@Override
+	public void setParam2(double par2) {
+		this.direction = par2;
+		
+	}
+
+	@Override
+	public void setParams(double par1, double par2) {
+		this.distance = par1;
+		this.direction = par2;
+	}
 	
 	
 }
