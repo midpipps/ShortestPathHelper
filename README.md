@@ -11,3 +11,5 @@ Movement will be a very basic subset of possible movements for the robot and wil
 
 Still working on fleshing out this document.
 [Design Documentation](https://docs.google.com/document/d/1-kHfXjxf7MLncgvYOeGCE64rBsVljTH4mVPJ7MtAusE/edit?usp=sharing)
+
+All files used for entry must now end with a blank space and a line feed.  This is to fix an issue with the Lejos InputStream that will run off the end of the file and never stop reading causing the system to throw out of memory exceptions.
