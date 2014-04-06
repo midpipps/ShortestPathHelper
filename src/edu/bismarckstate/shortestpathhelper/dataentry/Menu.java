@@ -3,9 +3,10 @@
  */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
-import edu.bismarckstate.shortestpathhelper.util.MovementInstructions;
+import edu.bismarckstate.shortestpathhelper.util.InstructionParser;
 
 /**
+ * Abstract class for all the menus keeps the InstructionParser and titles up to date
  * @author midpipps
  *
  */
@@ -16,9 +17,17 @@ public abstract class Menu{
 	 */
 	protected final String MENU_TITLE;
 	
-	protected MovementInstructions instructions;
+	/**
+	 * The instructionParser to use for the system
+	 */
+	protected InstructionParser instructions;
 	
-	protected Menu(String title, MovementInstructions instructs){
+	/**
+	 * Constructor with title and instructionparser passed in
+	 * @param title the title to display on the menu
+	 * @param instructs the instruction parser to use for instructions
+	 */
+	protected Menu(String title, InstructionParser instructs){
 		MENU_TITLE = title;
 		instructions = instructs;
 	}

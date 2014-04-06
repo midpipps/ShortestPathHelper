@@ -3,23 +3,40 @@
  */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
-import edu.bismarckstate.shortestpathhelper.util.MovementInstructions;
+import edu.bismarckstate.shortestpathhelper.util.InstructionParser;
 import lejos.util.TextMenu;
 
 /**
+ * Menu to delete specific items from a menu
  * @author midpipps
  *
  */
 public class DeleteModifyMenu extends Menu {
 	
+	/**
+	 * the item from instruction parser to change
+	 */
 	private int selectedItem;
+	
+	/**
+	 * A textmenu to display the items to display to user
+	 */
 	private TextMenu textMenu;
+	
+	/**
+	 * a menu of items to that are selectable
+	 */
 	private String[] menuOptions = {
 			//"Modify",
 			"Delete"
 		};
 	
-	public DeleteModifyMenu(MovementInstructions instructions, int selectedInstruction)
+	/**
+	 * Constructor
+	 * @param instructions the instruction parser to use for this menu item that needs to be modified
+	 * @param selectedInstruction the instruction that is to be modified
+	 */
+	public DeleteModifyMenu(InstructionParser instructions, int selectedInstruction)
 	{
 		super("Modify/Delete Menu", instructions);
 		selectedItem = selectedInstruction;

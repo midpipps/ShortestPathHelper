@@ -4,12 +4,16 @@
 package edu.bismarckstate.shortestpathhelper.util;
 
 /**
+ * Generic exception for the file parser
  * @author lucas.pippenger
  * @version 1.0
  *
  */
 public class FileParserException extends Exception {
 
+	/**
+	 * the message to display to the user
+	 */
 	private String message  = null;
 	
 	/**

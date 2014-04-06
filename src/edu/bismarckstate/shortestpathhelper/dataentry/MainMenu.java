@@ -3,13 +3,14 @@
  */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
-import edu.bismarckstate.shortestpathhelper.util.MovementInstructions;
+import edu.bismarckstate.shortestpathhelper.util.InstructionParser;
 import lejos.util.TextMenu;
 
 
 /**
+ * The main menu for finishing entering new points or viewing/deleting current points
  * @author midpipps
- * @version 0.0.1
+ * @version 1.5
  */
 public class MainMenu extends Menu {
 	
@@ -30,7 +31,7 @@ public class MainMenu extends Menu {
 	/**
 	 * Default constructor sets the menu title to Main Menu
 	 */
-	public MainMenu(MovementInstructions instructions) {
+	public MainMenu(InstructionParser instructions) {
 		super("Main Menu", instructions);
 		textMenu = new TextMenu(menuOptions, 1, super.MENU_TITLE);
 	}

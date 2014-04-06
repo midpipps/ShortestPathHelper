@@ -3,7 +3,9 @@
  */
 package edu.bismarckstate.shortestpathhelper.util;
 
+
 /**
+ * The interface for instruction always have to have these implemented for the system to work correctly
  * @author midpipps
  * @version 1.1
  */
@@ -22,22 +24,4 @@ public interface Instruction {
 	 */
 	double getNormalizedDistance();
 	
-	/**
-	 * Set the first param from the 
-	 * @param par1 - a value to set a param to
-	 */
-	void setParam1(double par1);
-	
-	/**
-	 * set the second param
-	 * @param par2 a value to set the param to
-	 */
-	void setParam2(double par2);
-	
-	/**
-	 * set param1 and param 2
-	 * @param par1 value to set param 1
-	 * @param par2 value to set param 2
-	 */
-	void setParams(double par1, double par2);
 }

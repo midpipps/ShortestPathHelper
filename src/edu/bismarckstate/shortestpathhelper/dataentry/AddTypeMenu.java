@@ -4,21 +4,33 @@
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
 import lejos.util.TextMenu;
-import edu.bismarckstate.shortestpathhelper.util.MovementInstructions;
+import edu.bismarckstate.shortestpathhelper.util.InstructionParser;
 
 /**
+ * Menu for choosing what kind of entering skeem to use
  * @author midpipps
  *
  */
 public class AddTypeMenu extends Menu {
 
+	/**
+	 * The menu system to display options
+	 */
 	private TextMenu textMenu;
+	
+	/**
+	 * the actual options
+	 */
 	private String [] menuOptions = {
 			//"On Brick",
 			"File Enter"
 	};
 	
-	public AddTypeMenu(MovementInstructions instructions)
+	/**
+	 * Constructor
+	 * @param instructions the instruction parser to use
+	 */
+	public AddTypeMenu(InstructionParser instructions)
 	{
 		super("Type of Add", instructions);
 		textMenu = new TextMenu(menuOptions, 1, super.MENU_TITLE);

@@ -19,12 +19,12 @@ import java.util.Vector;
  */
 public class FileParser {
 	/**
-	 * Reads the data from a file and returns it as a vector of strings pertaining to each line of the file
+	 * Reads the data from a file and returns it as a vector of strings pertaining to each line of the file.  File must end with a space and Line Feed Otherwise you may end up with Out Of Memory Exceptions
 	 * @param fileName String name of the file
 	 * @return Vector of the lines of the file
 	 * @throws FileParserException Thrown for any errors such as IOExceptions, Not able to read from file, and generic exceptions
 	 */
-	public static Vector<String> ReadFile(String fileName) throws FileParserException
+	public static Vector<String> readFile(String fileName) throws FileParserException
 	{
 		File data = new File(fileName);
 		Vector<String> returnData = null;
@@ -37,11 +37,11 @@ public class FileParser {
 				BufferedReader br = new BufferedReader(new InputStreamReader(din));
 				String temp = "";
 				while((temp = br.readLine()) != null) {
-					returnData.addElement(temp);
-					if (!br.ready()){
-						//no idea why this works but it does so meh;
+					if (temp.equalsIgnoreCase(" "))
+					{
 						break;
-					}						
+					}
+					returnData.addElement(temp);
 				}
 				din.close();
 			}catch(IOException ioe){

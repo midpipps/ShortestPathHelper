@@ -1,8 +1,13 @@
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
-import edu.bismarckstate.shortestpathhelper.util.MovementInstructions;
+import edu.bismarckstate.shortestpathhelper.util.InstructionParser;
 import lejos.util.TextMenu;
 
+/**
+ * Shows the list of points
+ * @author midpipps
+ *
+ */
 public class PointListMenu extends Menu {
 
 	/**
@@ -13,7 +18,7 @@ public class PointListMenu extends Menu {
 	/**
 	 * default constructor sets the menu title to Data Points List
 	 */
-	public PointListMenu(MovementInstructions instructions){
+	public PointListMenu(InstructionParser instructions){
 		super("Data Points List", instructions);
 		textMenu = new TextMenu(super.instructions.getToStringArray(), 1, super.MENU_TITLE);
 	}

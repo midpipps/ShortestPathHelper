@@ -3,30 +3,32 @@
  */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import edu.bismarckstate.shortestpathhelper.util.MovementInstruction;
-import edu.bismarckstate.shortestpathhelper.util.MovementInstructions;
+import edu.bismarckstate.shortestpathhelper.util.FileParser;
+import edu.bismarckstate.shortestpathhelper.util.FileParserException;
+import edu.bismarckstate.shortestpathhelper.util.InstructionParser;
 import lejos.nxt.Button;
 import lejos.util.TextMenu;
 
 /**
+ * Menu to add points from a file
  * @author midpipps
- * @version 1.0
+ * @version 1.5
  */
 public class FileAddPointsMenu extends Menu {
 
+	/**
+	 * will be the menu item to use for displaying
+	 */
 	private TextMenu textMenu;
 	
-	
-	public FileAddPointsMenu(MovementInstructions instructions)
+	/**
+	 * The constructor
+	 * @param instructions the instruction parser to use for the menu
+	 */
+	public FileAddPointsMenu(InstructionParser instructions)
 	{
 		super("File Add Menu", instructions);
 		textMenu = new TextMenu(null, 1, super.MENU_TITLE);
@@ -37,6 +39,7 @@ public class FileAddPointsMenu extends Menu {
 	 */
 	@Override
 	public Menu run() {
+		
 		// TODO Auto-generated method stub
 		File[] files = File.listFiles();
 		ArrayList<String> menuOptions = new ArrayList<String>();
@@ -51,37 +54,14 @@ public class FileAddPointsMenu extends Menu {
 		int selection = textMenu.select();
 		if (selection >= 0)
 		{
-			
-			File data = new File(menuOptions.get(selection));
-			if (data.canRead())
-			{
-				try{
-					InputStream is = new FileInputStream(data);
-					DataInputStream din = new DataInputStream(is);
-					BufferedReader br = new BufferedReader(new InputStreamReader(din));
-					String strLineDirection;
-					while((strLineDirection = br.readLine()) != null) {
-						String strLineDistance = br.readLine();
-						if (strLineDistance != null)
-						{
-							MovementInstruction mi = new MovementInstruction();
-							mi.setDirection(Double.parseDouble(strLineDirection.trim()));
-							mi.setDistance(Double.parseDouble(strLineDistance.trim()));
-							super.instructions.add(mi);
-						}
-						if (!br.ready()){
-							//no idea why this works but it does so meh;
-							break;
-						}						
-					}
-					din.close();
-				}catch(IOException ioe){
-					System.out.println("error:" + ioe.getMessage());
-					Button.ENTER.waitForPressAndRelease();
-				}catch(Exception ex){
-					System.out.println("error:" + ex.getMessage());
-					Button.ENTER.waitForPressAndRelease();
-				}
+			try{
+				super.instructions.parseStringList(FileParser.readFile(menuOptions.get(selection)));
+			}catch(FileParserException ioe){
+				System.out.println("error:" + ioe.getMessage());
+				Button.ENTER.waitForPressAndRelease();
+			}catch(Exception ex){
+				System.out.println("error:" + ex.getMessage());
+				Button.ENTER.waitForPressAndRelease();
 			}
 		}	
 		return new AddTypeMenu(super.instructions);

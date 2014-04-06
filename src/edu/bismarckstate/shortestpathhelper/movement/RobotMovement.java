@@ -10,10 +10,25 @@ import lejos.robotics.navigation.DifferentialPilot;
 import edu.bismarckstate.shortestpathhelper.util.FileParser;
 import edu.bismarckstate.shortestpathhelper.util.MovementInstruction;
 
+/**
+ * Used to move the robot in simple ways will load a file to setup the robot for correct movement.
+ * @author midpipps
+ */
 public class RobotMovement {
 
+	/**
+	 * the degrees the robot is facing
+	 */
 	private double facing;
+	
+	/**
+	 * the differential pilot that robot movement uses to move around
+	 */
 	private DifferentialPilot diffPilot;
+	
+	/**
+	 * used to keep track of if the pilot is setup ok or not.
+	 */
 	private boolean diffPilotSetup = false;
 	
 	/**
@@ -46,7 +61,7 @@ public class RobotMovement {
 		boolean fileReadok = true;
 		try
 		{
-			Vector<String> fileData = FileParser.ReadFile(fileName);
+			Vector<String> fileData = FileParser.readFile(fileName);
 			if (fileData != null && fileData.size() == 5){
 					motor1 = getMotorFromString(fileData.elementAt(0));
 					motor2 = getMotorFromString(fileData.elementAt(1));
@@ -74,6 +89,12 @@ public class RobotMovement {
 		}
 	}
 	
+	/**
+	 * Changes from string representation of a motor to an actual motor port
+	 * @param motorLetter the letter of the motor A, B, C
+	 * @return the regulated motor that is defined by the string passed in
+	 * @throws Exception Generic exception if something went wrong
+	 */
 	private NXTRegulatedMotor getMotorFromString(String motorLetter) throws Exception{
 		if (motorLetter.toLowerCase().equals("a")){
 			return Motor.A;
@@ -86,6 +107,11 @@ public class RobotMovement {
 		}
 	}
 	
+	/**
+	 * takes in a string of 1 or anything else 1 for reversed anything else for not
+	 * @param reversed string param 1 for reversed 0 for not reversed
+	 * @return true if reversed false otherwise.
+	 */
 	private boolean getMotorReversed(String reversed){
 		if (reversed.equals("1"))
 			return true;
@@ -93,6 +119,10 @@ public class RobotMovement {
 			return false;
 	}
 	
+	/**
+	 * Checks if the diffpilot was created correctly
+	 * @return true if diffpilot was created ok false if not
+	 */
 	public boolean isDiffPilotOk()
 	{
 		return diffPilot != null && diffPilotSetup;
@@ -132,6 +162,10 @@ public class RobotMovement {
 		this.facing = facing;
 	}
 	
+	/**
+	 * A string version of the class will show facing in N E S W or number of degrees depending on where the bot is facing.
+	 */
+	@Override
 	public String toString(){
 		String output = "Facing: ";
 		
