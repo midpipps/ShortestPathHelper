@@ -8,7 +8,7 @@ import lejos.nxt.Motor;
 import lejos.nxt.NXTRegulatedMotor;
 import lejos.robotics.navigation.DifferentialPilot;
 import edu.bismarckstate.shortestpathhelper.util.FileParser;
-import edu.bismarckstate.shortestpathhelper.util.MovementInstruction;
+import edu.bismarckstate.shortestpathhelper.util.Instruction;
 
 /**
  * Used to move the robot in simple ways will load a file to setup the robot for correct movement.
@@ -30,6 +30,16 @@ public class RobotMovement {
 	 * used to keep track of if the pilot is setup ok or not.
 	 */
 	private boolean diffPilotSetup = false;
+	
+	/**
+	 * The morot assigned to left side
+	 */
+	private NXTRegulatedMotor left = Motor.A;
+	
+	/**
+	 * the motor assigned to right side
+	 */
+	private NXTRegulatedMotor right = Motor.A;
 	
 	/**
 	 * Default Constructor uses the default file name of robotsetup.rbt
@@ -55,16 +65,16 @@ public class RobotMovement {
 	{
 		double trackwidth = 0;
 		double wheelwidth = 0;
-		NXTRegulatedMotor motor1 = Motor.B;
-		NXTRegulatedMotor motor2 = Motor.A;
+		left = Motor.B;
+		right = Motor.A;
 		boolean reversed = false;
 		boolean fileReadok = true;
 		try
 		{
 			Vector<String> fileData = FileParser.readFile(fileName);
 			if (fileData != null && fileData.size() == 5){
-					motor1 = getMotorFromString(fileData.elementAt(0));
-					motor2 = getMotorFromString(fileData.elementAt(1));
+					left = getMotorFromString(fileData.elementAt(0));
+					right = getMotorFromString(fileData.elementAt(1));
 					trackwidth = Double.parseDouble(fileData.elementAt(2).trim());
 					wheelwidth = Double.parseDouble(fileData.elementAt(3).trim());
 					reversed = getMotorReversed(fileData.elementAt(4).trim());
@@ -83,7 +93,7 @@ public class RobotMovement {
 		
 		if (fileReadok){
 			this.diffPilotSetup = true;
-			this.diffPilot = new DifferentialPilot(wheelwidth, trackwidth, motor1, motor2,reversed);
+			this.diffPilot = new DifferentialPilot(wheelwidth, trackwidth, left, right,reversed);
 		} else {
 			this.diffPilotSetup = false;
 		}
@@ -129,20 +139,50 @@ public class RobotMovement {
 	}
 	
 	/**
-	 * Moves the robot according to MovementInstruction
-	 * @param move The instruction you want to send. Should have a direction and distance.
-	 * 				Will face the direction (north south east or west, or 0 to 360) and move the distance you send.
+	 * Calls the move with immediate return set to false; Always resets tach counts before moving forward
+	 * @param theMove the movement Instruction to move
 	 */
-	public void move(MovementInstruction move){
+	public void move(Instruction theMove)
+	{
+		move(theMove, false);
+	}
+	
+	/**
+	 * Moves the robot according to MovementInstruction always resets motor tach counts before moving
+	 * @param theMove The instruction you want to send. Should have a direction and distance.
+	 * 				Will face the direction (north south east or west, or 0 to 360) and move the distance you send.
+	 * @param immediateReturnAfterRotate Return immediately to calling code if this bool is set to true.
+	 */
+	public void move(Instruction theMove, boolean immediateReturnAfterRotate){
 		
-		double dist = move.getDistance();
-		double rot = move.getNormalizedTurn(facing);
-		this.diffPilot.rotate(rot);
-		this.diffPilot.travel(dist);
+		double dist = theMove.getNormalizedDistance();
+		double rot = theMove.getNormalizedTurn(facing);
 		this.facing = (this.facing + rot) % 360;
 		if (this.facing < 0){
 			this.facing += 360;
 		}
+		this.diffPilot.rotate(rot);
+		this.diffPilot.reset();
+		this.diffPilot.travel(dist, immediateReturnAfterRotate);
+		
+	}
+	
+	/**
+	 * returns tachocount from the left then right motors in order
+	 * @return
+	 */
+	public int[] getTachCounts()
+	{
+		int[] temp = {left.getTachoCount(), right.getTachoCount()};
+		return temp;
+	}
+	
+	/**
+	 * Stop the differential pilot from moving
+	 */
+	public void stop()
+	{
+		this.diffPilot.stop();
 	}
 
 	/**
