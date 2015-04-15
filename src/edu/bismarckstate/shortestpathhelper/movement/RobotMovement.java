@@ -12,7 +12,7 @@ import edu.bismarckstate.shortestpathhelper.util.Instruction;
 
 /**
  * Used to move the robot in simple ways will load a file to setup the robot for correct movement.
- * @author midpipps
+ * @author Lucas Pippenger
  */
 public class RobotMovement {
 
@@ -50,11 +50,23 @@ public class RobotMovement {
 	
 	/**
 	 * Used for custom robots.
-	 * @param wheel The name of the file holding the wheel diameter. Just put the wheel diameter in the file, nothing else.
-	 * @param trackW The name of the file holding the track Width. Just put the track width in the file, nothing else.
+	 * @param filename The name of the file the robot setup instructions seperated by new lines in order of LeftMotor, RightMotor, wheel diameter, wheelwidth, and reverse on or off
 	 */
 	public RobotMovement(String fileName){
 		setDifferentialPilotFromFile(fileName);
+	}
+	
+	/**
+	 * * Sets up the differential pilot object for moving the robot
+	 * @param wheelWidth The diameter of each wheel
+	 * @param trackWidth Width between the wheels usually measuring at center points of one wheel to center point of other wheel
+	 * @param left motor to use
+	 * @param right motor on the right
+	 * @param reversed set to true if the motors are mounted backwards
+	 */
+	public RobotMovement(double wheelWidth, double trackWidth, NXTRegulatedMotor left, NXTRegulatedMotor right, boolean reversed)
+	{
+		diffPilotSetup(wheelWidth, trackWidth, left, right,reversed);
 	}
 	
 	/**
@@ -93,10 +105,23 @@ public class RobotMovement {
 		
 		if (fileReadok){
 			this.diffPilotSetup = true;
-			this.diffPilot = new DifferentialPilot(wheelwidth, trackwidth, left, right,reversed);
+			diffPilotSetup(wheelwidth, trackwidth, left, right,reversed);
 		} else {
 			this.diffPilotSetup = false;
 		}
+	}
+	
+	/**
+	 * Sets up the differential pilot object for moving the robot
+	 * @param wheelWidth The diameter of each wheel
+	 * @param trackWidth Width between the wheels usually measuring at center points of one wheel to center point of other wheel
+	 * @param left motor to use
+	 * @param right motor on the right
+	 * @param reversed set to tru if the motors are mounted backwards
+	 */
+	private void diffPilotSetup(double wheelWidth, double trackWidth, NXTRegulatedMotor left, NXTRegulatedMotor right, boolean reversed)
+	{
+		this.diffPilot = new DifferentialPilot(wheelWidth, trackWidth, left, right,reversed);
 	}
 	
 	/**

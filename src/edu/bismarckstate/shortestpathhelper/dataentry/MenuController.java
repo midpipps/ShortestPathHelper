@@ -1,13 +1,10 @@
-/**
- * 
- */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
 import lejos.nxt.LCD;
 
 /**
  * Menu controller just keeps the menus running and keeps them running until the current menu becomes false
- * @author midpipps
+ * @author Lucas Pippenger
  * @version 0.0.5
  */
 public class MenuController {

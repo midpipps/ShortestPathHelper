@@ -1,12 +1,9 @@
-/**
- * 
- */
 package edu.bismarckstate.shortestpathhelper.util;
 
 
 /**
  * The interface for instruction always have to have these implemented for the system to work correctly
- * @author midpipps
+ * @author Lucas Pippenger
  * @version 1.1
  */
 public interface Instruction {

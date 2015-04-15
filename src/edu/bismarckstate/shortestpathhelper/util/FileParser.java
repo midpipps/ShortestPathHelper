@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.bismarckstate.shortestpathhelper.util;
 
 import java.io.BufferedReader;
@@ -14,7 +11,7 @@ import java.util.Vector;
 
 
 /**
- * @author lucas.pippenger
+ * @author Lucas Pippenger
  * @version 1.0
  */
 public class FileParser {

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
 import edu.bismarckstate.shortestpathhelper.util.InstructionParser;
@@ -9,7 +6,7 @@ import lejos.util.TextMenu;
 
 /**
  * The main menu for finishing entering new points or viewing/deleting current points
- * @author midpipps
+ * @author Lucas Pippenger
  * @version 1.5
  */
 public class MainMenu extends Menu {
@@ -36,8 +33,8 @@ public class MainMenu extends Menu {
 		textMenu = new TextMenu(menuOptions, 1, super.MENU_TITLE);
 	}
 
-	/**
-	 * Starts the menu and returns the next menu object that will need to be run.
+	/* (non-Javadoc)
+	 * @see edu.bismarckstate.shortestpathhelper.dataentry.Menu#run()
 	 */
 	@Override
 	public Menu run() {

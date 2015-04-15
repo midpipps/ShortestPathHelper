@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
 import edu.bismarckstate.shortestpathhelper.util.InstructionParser;
@@ -8,7 +5,7 @@ import lejos.util.TextMenu;
 
 /**
  * Menu to delete specific items from a menu
- * @author midpipps
+ * @author Lucas Pippenger
  *
  */
 public class DeleteModifyMenu extends Menu {

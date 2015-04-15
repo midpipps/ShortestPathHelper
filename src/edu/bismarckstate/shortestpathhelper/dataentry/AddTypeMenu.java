@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
 import lejos.util.TextMenu;
@@ -8,7 +5,7 @@ import edu.bismarckstate.shortestpathhelper.util.InstructionParser;
 
 /**
  * Menu for choosing what kind of entering skeem to use
- * @author midpipps
+ * @author Lucas Pippenger
  *
  */
 public class AddTypeMenu extends Menu {
@@ -19,7 +16,7 @@ public class AddTypeMenu extends Menu {
 	private TextMenu textMenu;
 	
 	/**
-	 * the actual options
+	 * the menu options
 	 */
 	private String [] menuOptions = {
 			//"On Brick",

@@ -1,11 +1,8 @@
-/**
- * 
- */
 package edu.bismarckstate.shortestpathhelper.util;
 
 /**
  * Generic exception for the file parser
- * @author lucas.pippenger
+ * @author Lucas Pippenger
  * @version 1.0
  *
  */

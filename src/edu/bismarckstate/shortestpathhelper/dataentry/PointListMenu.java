@@ -5,7 +5,7 @@ import lejos.util.TextMenu;
 
 /**
  * Shows the list of points
- * @author midpipps
+ * @author Lucas Pippenger
  *
  */
 public class PointListMenu extends Menu {
@@ -23,6 +23,9 @@ public class PointListMenu extends Menu {
 		textMenu = new TextMenu(super.instructions.getToStringArray(), 1, super.MENU_TITLE);
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.bismarckstate.shortestpathhelper.dataentry.Menu#run()
+	 */
 	@Override
 	public Menu run() {
 		int selection = textMenu.select();

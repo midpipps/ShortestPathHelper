@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.bismarckstate.shortestpathhelper.util;
 
 import java.util.Vector;
@@ -9,7 +6,7 @@ import edu.bismarckstate.shortestpathhelper.dataentry.Menu;
 
 /**
  * Interface for instruction parser to deal with how the system returns the files read in and putting them into an instruction set
- * @author midpipps
+ * @author Lucas Pippenger
  *
  */
 public interface InstructionParser {

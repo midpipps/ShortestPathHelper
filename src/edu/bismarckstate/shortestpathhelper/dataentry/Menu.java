@@ -1,13 +1,10 @@
-/**
- * 
- */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
 import edu.bismarckstate.shortestpathhelper.util.InstructionParser;
 
 /**
  * Abstract class for all the menus keeps the InstructionParser and titles up to date
- * @author midpipps
+ * @author Lucas Pippenger
  *
  */
 public abstract class Menu{

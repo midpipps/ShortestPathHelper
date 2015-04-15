@@ -2,7 +2,7 @@ package edu.bismarckstate.shortestpathhelper.util;
 
 /**
  * A basic Movement Instruction class to get the data in
- * @author midpipps
+ * @author Lucas Pippenger
  *
  */
 public class MovementInstruction implements Instruction{
@@ -127,12 +127,21 @@ public class MovementInstruction implements Instruction{
 	}
 
 	@Override
+	/**
+	 * a nice string representation of the direction and distance stored.
+	 * @return a nice string representation of the object
+	 */
 	public String toString() {
 		return "<" + distance + ", " + direction
 				+ ">";
 	}
 
 	@Override
+	/**
+	 * Returns the angle that the instruction would tell the bot to turn to.
+	 * @param currentAngle the bots current angle for use in finding the correct turn to make
+	 * @return the double value of the turn that the bot needs to make for it to turn properly
+	 */
 	public double getNormalizedTurn(double currentAngle) {
 		double returnValue = this.direction - currentAngle;
 		if (returnValue > 180){
@@ -144,6 +153,10 @@ public class MovementInstruction implements Instruction{
 	}
 
 	@Override
+	/**
+	 * Gets the value the bot should move
+	 * @return double the distance for the object to move
+	 */
 	public double getNormalizedDistance() {
 		return this.distance;
 	}

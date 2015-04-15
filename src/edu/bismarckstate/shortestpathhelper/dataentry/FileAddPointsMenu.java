@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.bismarckstate.shortestpathhelper.dataentry;
 
 import java.io.File;
@@ -14,7 +11,7 @@ import lejos.util.TextMenu;
 
 /**
  * Menu to add points from a file
- * @author midpipps
+ * @author Lucas Pippenger
  * @version 1.5
  */
 public class FileAddPointsMenu extends Menu {
