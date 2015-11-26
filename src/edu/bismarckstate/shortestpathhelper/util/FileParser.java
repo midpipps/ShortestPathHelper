@@ -11,7 +11,7 @@ import java.util.Vector;
 
 
 /**
- * @author Lucas Pippenger
+ * @author Midpipps
  * @version 1.0
  */
 public class FileParser {
