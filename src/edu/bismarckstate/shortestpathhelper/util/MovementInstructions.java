@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
 
-import edu.bismarckstate.shortestpathhelper.dataentry.Menu;
-
 /**
  * The parser for movement instructions
  * @author Lucas Pippenger
@@ -97,38 +95,6 @@ public class MovementInstructions implements InstructionParser{
 	public Collection<MovementInstruction> getCollection()
 	{
 		return instructions;
-	}
-	
-	@Override
-	/**
-	 * Gets a menu item to use for inputting new instructions into the system
-	 * @return a menu object to be run for adding a new item to the instruction set
-	 */
-	public Menu getInputMenu() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	/**
-	 * Gets a menu object for editing the instruction at passed in index
-	 * @param theInstruct the index of the instruction to remove
-	 * @return a menu item for editing the instruction.
-	 */
-	public Menu getEditMenu(int theInstruct) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	/**
-	 * Returns a menu for selecting yes or no to removing an element and also on yes menu item will cause the element to be deleted
-	 * @param itemNumber the index number of the item to be removed if yes is selected
-	 * @return a menu for the delete screen.
-	 */
-	public Menu getDeleteMenu(int itemNumber) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	@Override
